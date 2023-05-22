@@ -48,20 +48,20 @@ func ParseRequest(bufConn io.Reader) (*Request, error) {
 
 // handleRequest is used for request processing after authentication
 func (sf *Server) handleRequest(write io.Writer, req *Request) error {
-	var err error
+// 	var err error
 
 	ctx := context.Background()
 	// Resolve the address if we have a FQDN
-	dest := req.RawDestAddr
-	if dest.FQDN != "" {
-		ctx, dest.IP, err = sf.resolver.Resolve(ctx, dest.FQDN)
-		if err != nil {
-			if err := SendReply(write, statute.RepHostUnreachable, nil); err != nil {
-				return fmt.Errorf("failed to send reply, %v", err)
-			}
-			return fmt.Errorf("failed to resolve destination[%v], %v", dest.FQDN, err)
-		}
-	}
+// 	dest := req.RawDestAddr
+// 	if dest.FQDN != "" {
+// 		ctx, dest.IP, err = sf.resolver.Resolve(ctx, dest.FQDN)
+// 		if err != nil {
+// 			if err := SendReply(write, statute.RepHostUnreachable, nil); err != nil {
+// 				return fmt.Errorf("failed to send reply, %v", err)
+// 			}
+// 			return fmt.Errorf("failed to resolve destination[%v], %v", dest.FQDN, err)
+// 		}
+// 	}
 
 	// Apply any address rewrites
 	req.DestAddr = req.RawDestAddr
